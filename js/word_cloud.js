@@ -4,7 +4,7 @@ var fontMaxSize = 100;
 var stop_words = ["and", "the", "with", "for", "to", "of", "in", "from", "a", "can", "but", "get", "an", "so",
  "are", "has", "is", "or", "it"];
 
-d3.json("word_cloud.json", function (data) {
+d3.json("../data/word_cloud.json", function (data) {
     /**
      * http://stackoverflow.com/questions/16244857/d3-js-data-filtering
      */
