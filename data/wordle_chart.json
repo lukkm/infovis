@@ -1,0 +1,8 @@
+[
+{"title": "I felt creative", "values": {"Agree": 88, "Neutral": 8, "Disagree": 4}},
+{"title": "I felt an emotional reaction", "values": {"Agree": 66, "Neutral": 22, "Disagree": 12}},
+{"title": "I learned something new about the text", "values": {"Agree": 63, "Neutral": 24, "Disagree": 13}},
+{"title": "It confirmed my understanding of the text", "values": {"Agree": 57, "Neutral": 33, "Disagree": 10}},
+{"title": "It jogged my memory", "values": {"Agree": 50, "Neutral": 35, "Disagree": 15}},
+{"title": "The Wordle confused me", "values": {"Agree": 5, "Neutral": 9, "Disagree": 86}}
+]
