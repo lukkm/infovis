@@ -98,3 +98,94 @@ function type(d) {
   d.commits = +d.commits;
   return d;
 }
+
+var categories2 = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sabado'];
+
+var commits2 = [1, 26, 29, 57, 46, 59, 0];
+
+var colors2 = ['#0082ca','#0082ca','#0082ca','#0082ca','#0082ca','#0082ca','#0082ca'];
+
+var grid = d3.range(0).map(function(i){
+  return {'x1':0,'y1':30,'x2':0,'y2':480};
+});
+
+var tickVals = grid.map(function(d,i){
+  if(i>0){ return i*10; }
+  else if(i===0){ return "100";}
+});
+
+var xscale2 = d3.scale.linear()
+        .domain([10,70])
+        .range([0,722]);
+
+var yscale2 = d3.scale.linear()
+        .domain([0,categories2.length])
+        .range([30,480]);
+
+var colorScale2 = d3.scale.quantize()
+        .domain([0,categories2.length])
+        .range(colors2);
+
+var canvas2 = d3.select('#wrapper')
+        .append('svg')
+        .attr({'width':900,'height':700});
+
+var grids2 = canvas2.append('g')
+          .attr('id','grid')
+          .attr('transform','translate(150,10)')
+          .selectAll('line')
+          .data(grid)
+          .enter()
+          .append('line')
+          .attr({'x1':function(d,i){ return i*30; },
+             'y1':function(d){ return d.y1; },
+             'x2':function(d,i){ return i*30; },
+             'y2':function(d){ return d.y2; },
+          })
+          .style({'stroke':'#adadad','stroke-width':'1px'});
+
+var xAxis3 = d3.svg.axis();
+  xAxis3
+    .orient('bottom')
+    .scale(xscale2)
+    .tickValues(tickVals);
+
+var yAxis2 = d3.svg.axis();
+  yAxis2
+    .orient('left')
+    .scale(yscale2)
+    .tickSize(2)
+    .tickFormat(function(d,i){ return categories2[i]; })
+    .tickValues(d3.range(7));
+
+var y_xis2 = canvas2.append('g')
+          .attr("transform", "translate(150,0)")
+          .attr('id','yaxis2')
+          .call(yAxis2);
+
+var chart2 = canvas2.append('g')
+          .attr("transform", "translate(150,0)")
+          .attr('id','bars')
+          .selectAll('rect')
+          .data(commits2)
+          .enter()
+          .append('rect')
+          .attr('height',40)
+          .attr({'x':0,'y':function(d,i){ return yscale2(i); }})
+          .style('fill',function(d,i){ return colorScale2(i); })
+          .attr('width',function(d){ return 0; });
+
+
+var transit2 = d3.select("#wrapper").select("svg").selectAll("rect")
+            .data(commits2)
+            .transition()
+            .duration(1000) 
+            .attr("width", function(d) {return xscale2(d); });
+
+var transitext2 = d3.select('#bars')
+          .selectAll('text')
+          .data(commits2)
+          .enter()
+          .append('text')
+          .attr({'x':function(d) {return xscale2(d)-30; },'y':function(d,i){ return yscale2(i)+20; }})
+          .text(function(d){ return d; }).style({'fill':'#fff','font-size':'14px'});

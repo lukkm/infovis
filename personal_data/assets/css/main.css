@@ -18,6 +18,19 @@
 		vertical-align: baseline;
 	}
 
+	#xaxis .domain {
+    	fill:none;
+    	stroke:#000;
+  	}
+	  
+	#xaxis text, #yaxis text {
+		font-size: 12px;
+	}
+
+	#margin-top-50 {
+		margin-top: 50px;
+	}
+
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
